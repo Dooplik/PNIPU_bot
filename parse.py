@@ -1,12 +1,13 @@
 import openpyxl
+import datetime
 
 
 def parse(p):
+    d = datetime.date.weekday(datetime.date.today())
     book = openpyxl.open(p, read_only=True)
-    b = openpyxl.load_workbook(filename=path).active
+    b = openpyxl.load_workbook(filename=p).active
     s = book.active
-    print(s.cell(75, 2))
-    days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    days = ['0', '1', '2', '3', '4', '5']
     week1 = {a: [[None, None]for j in range(6)] for a in days}
     week2 = {a: [[None, None]for j in range(6)] for a in days}
     k = 4
@@ -39,14 +40,14 @@ def parse(p):
                         week2[day][i] = [s['B' + str(k)].value, None]
                         k += 2
 
-    return week1, week2
+    result = ''
+    for i in week1[str(d)]:
+        if i[1] is not None:
+            i[1] = i[1].replace('\n', ' ')
+        result += f'{i[0]} || {i[1]}\n'
+    return result
 
 
 if __name__ == '__main__':
-    path = r'C:\Users\Dooplik\Desktop\raspisanie.xlsx'
-    first_week, second_week = parse(path)
-    for i in second_week:
-        print(i)
-        for j in second_week[i]:
-            print(j)
-        print('-------------------------')
+    path = r'C:\Users\Dooplik\Desktop\raspisanie_1.xlsx'
+    parse(path)

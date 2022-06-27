@@ -3,15 +3,13 @@ from telebot import types
 
 bot = telebot.TeleBot('5312347011:AAHX1Hlf26XDk3B8dfFziBYnRn_gORXIE0E')
 
-
 @bot.message_handler(commands=['start'])
 def start(message):
     bot.send_message(message.chat.id, 'Введите называние направления')
 
-
 @bot.message_handler()
 def NumbersGroups(message):
-    if message.text.strip().lower() == 'ист':
+    if(message.text.strip().lower() == 'ист'):
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=3)
         button1 = types.KeyboardButton('ИСТ-20-1б')
         button2 = types.KeyboardButton('ИСТ-20-2б')
@@ -19,21 +17,21 @@ def NumbersGroups(message):
         markup.add(button1, button2, button3)
         bot.send_message(message.chat.id, 'Выбирете группу', reply_markup=markup)
 
-    if message.text == 'ИСТ-20-1б':
+    if(message.text == 'ИСТ-20-1б'):
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=3)
         button1 = types.KeyboardButton('Предметы')
         button2 = types.KeyboardButton('Преподаватели')
         button3 = types.KeyboardButton('Расписание')
         markup.add(button1, button2, button3)
         bot.send_message(message.chat.id, "Что вас интересует?", reply_markup=markup)
-    elif message.text == 'ИСТ-20-2б':
+    elif (message.text == 'ИСТ-20-2б'):
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=3)
         button1 = types.KeyboardButton('Предметы')
         button2 = types.KeyboardButton('Преподаватели')
         button3 = types.KeyboardButton('Расписание')
         markup.add(button1, button2, button3)
         bot.send_message(message.chat.id, "Что вас интересует?", reply_markup=markup)
-    elif message.text == 'ИСТ-20-3б':
+    elif (message.text == 'ИСТ-20-3б'):
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=3)
         button1 = types.KeyboardButton('Предметы')
         button2 = types.KeyboardButton('Преподаватели')
@@ -42,7 +40,7 @@ def NumbersGroups(message):
         bot.send_message(message.chat.id, "Что вас интересует?", reply_markup=markup)
 
     getMessage = message.text.strip().lower()
-    if getMessage == 'предметы':
+    if(getMessage == 'предметы'):
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=1)
         button1 = types.KeyboardButton('УИР')
         button2 = types.KeyboardButton('ТИПиС')
@@ -62,11 +60,10 @@ def NumbersGroups(message):
     # else:
     #   bot.send_message(message.chat.id, 'Такого направления нет в базе данных')
 
-
 @bot.message_handler(content_types=['text'])
 def GroupElemets(message):
     getMessage = message.text.strip().lower()
-    if getMessage == 'предметы':
+    if(getMessage == 'предметы'):
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=1)
         button1 = types.KeyboardButton('УИР')
         button2 = types.KeyboardButton('ТИПиС')
@@ -85,6 +82,5 @@ def GroupElemets(message):
         markup.add(button1, button2, button3)
         finalMessage = "Такого предмета не существует"
     bot.send_message(message.chat.id, finalMessage, reply_markup=markup)
-
 
 bot.polling(none_stop=True)
