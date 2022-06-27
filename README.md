@@ -1,1 +1,1 @@
-# PNIPU_bot
+# PINUP_bot
