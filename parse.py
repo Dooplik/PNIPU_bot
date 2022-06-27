@@ -2,8 +2,7 @@ import openpyxl
 import datetime
 
 
-def parse(p):
-    d = datetime.date.weekday(datetime.date.today())
+def parse(p, d):
     book = openpyxl.open(p, read_only=True)
     b = openpyxl.load_workbook(filename=p).active
     s = book.active
