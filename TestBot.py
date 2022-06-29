@@ -1,7 +1,6 @@
 import telebot
 from telebot import types
 import config
-import parse
 import datetime
 import json
 
@@ -15,21 +14,44 @@ with open('groups.json') as f2:
 with open('teachers.json') as f3:
     teachers_json = json.load(f3)
 
+list_of_teachers = []
+[[[list_of_teachers.append([k, teachers_json['faculties'][j][i][k]]) for k in teachers_json['faculties'][j][i]] for i in teachers_json['faculties'][j]]
+ for j in teachers_json['faculties']]
+
 
 @bot.message_handler(commands=["start"])
 def welcome(message):
-    chain_actions.clear()
-    bot.send_message(message.chat.id,
-                     "Приветствую вас, пока что я уродец и работаю только для истов 20 года, но скоро это изменится!")
+    bot.send_message(message.chat.id, "Приветствую вас!\nЗачем пожаловали?")
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2, one_time_keyboard=True)
-    for i in departments_json['faculties']:
-        markup.add(i)
-    markup.add("На главную")
-    bot.send_message(message.chat.id, "Выбери факультет", reply_markup=markup)
+    markup.add('Факультеты', 'Преподаватели')
+    bot.send_message(message.chat.id, "Выбирай, дядя", reply_markup=markup)
 
 
 @bot.message_handler(content_types=['text'])
 def start_text(message):
+    if message.text == 'Факультеты':
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+        for i in departments_json['faculties']:
+            markup.add(i)
+        bot.send_message(message.chat.id, "Выберите факультет", reply_markup=markup)
+        bot.register_next_step_handler(message, g)
+    elif message.text == 'Преподаватели':
+        bot.send_message(message.chat.id, "Введите фамилию преподавателя")
+        bot.register_next_step_handler(message, p)
+
+
+def p(message):
+    teachers = []
+    reply_markup = types.InlineKeyboardMarkup(row_width=2)
+    for i in list_of_teachers:
+        if i[0].split(' ')[0] == message.text:
+            teachers.append(i)
+    for i in teachers:
+        reply_markup.add(types.InlineKeyboardButton(text=i[0], url=i[1]))
+    bot.send_message(message.chat.id, "Держи, дядя", reply_markup=reply_markup)
+
+
+def g(message):
     if message.text in list(departments_json['faculties'].keys()):
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
         for direction in groups_json['faculties'][replace(message.text)].keys():
@@ -59,6 +81,7 @@ def b(message):
         bot.send_message(message.chat.id, "Качай", reply_markup=reply_markup)
 
 
+# факультет/направление/специальность/конкретная специальность
 def replace(word):
     abb = {'AKF': 'АКФ',
            'GNF': 'ГНФ',
