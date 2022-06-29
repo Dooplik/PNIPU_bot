@@ -1,0 +1,68 @@
+{
+  "faculties": {
+    "AKF": {
+      "Кафедра Авиационные двигатели (АД)": "https://pstu.ru/title1/faculties/akf/ad/?staff=1&cid=23",
+      "Кафедра Дизайн, графика и начертательная геометрия (ДГНГ)": "https://pstu.ru/title1/faculties/akf/dgng/?staff=1&cid=23",
+      "Кафедра Механика композиционных материалов и конструкций (МКМК)": "https://pstu.ru/title1/faculties/akf/mkmk/?staff=1&cid=23",
+      "Кафедра Проектирование и производство автоматических машин (ППАМ)": "https://pstu.ru/title1/faculties/akf/ppam/?staff=1&cid=23",
+      "Кафедра Ракетно-космическая техника и энергетические системы (РКТЭС)": "https://pstu.ru/title1/faculties/akf/rktes/?staff=1&cid=23",
+      "Кафедра Технология полимерных материалов и порохов (ТПМП)": "https://pstu.ru/title1/faculties/akf/tpmp/?staff=1&cid=23",
+      "Кафедра Экспериментальная механика и конструкционное материаловедение (ЭМКМ)": "https://pstu.ru/title1/faculties/akf/emkm/?staff=1&cid=23"
+    },
+    "GNF": {
+      "Кафедра Безопасность жизнедеятельности (БЖ)": "https://pstu.ru/title1/faculties/gnf/bj/?staff=1&cid=23",
+      "Кафедра Геология нефти и газа (ГНГ)": "https://pstu.ru/title1/faculties/gnf/gng/?staff=1&cid=23",
+      "Кафедра Горная электромеханика (ГЭМ)": "https://pstu.ru/title1/faculties/gnf/gem/?staff=1&cid=23",
+      "Кафедра Маркшейдерское дело, геодезия и геоинформационные системы (МДГГИС)": "https://pstu.ru/title1/faculties/gnf/mdggis/?staff=1&cid=23",
+      "Кафедра Нефтегазовые технологии (НГТ)": "https://pstu.ru/title1/faculties/gnf/ngt/?staff=1&cid=23",
+      "Кафедра Разработка месторождений полезных ископаемых (РМПИ)": "https://pstu.ru/title1/faculties/gnf/rmpi/?staff=1&cid=23"
+    },
+    "GUM": {
+      "Кафедра Государственное управление и история (ГУИ)": "https://pstu.ru/title1/faculties/gum/gui/?staff=1&cid=23",
+      "Кафедра Иностранные языки и связи с общественностью (ИЯСО)": "https://pstu.ru/title1/faculties/gum/iaso/?staff=1&cid=23",
+      "Кафедра Иностранные языки, лингвистика и перевод (ИЯЛП)": "https://pstu.ru/title1/faculties/gum/ialp/?staff=1&cid=23",
+      "Кафедра Менеджмент и маркетинг (МиМ)": "https://pstu.ru/title1/faculties/gum/mm/?staff=1&cid=23",
+      "Кафедра Социология и политология (СиП)": "https://pstu.ru/title1/faculties/gum/sp/?staff=1&cid=23",
+      "Кафедра Физическая культура (ФК)": "https://pstu.ru/title1/faculties/gum/fk/?staff=1&cid=23",
+      "Кафедра Философия и право (ФП)": "https://pstu.ru/title1/faculties/gum/fp/?staff=1&cid=23",
+      "Кафедра Экономика и управление промышленным производством (ЭУПП)": "https://pstu.ru/title1/faculties/gum/eupp/?staff=1&cid=23",
+      "Кафедра Экономика и финансы (ЭФ)": "https://pstu.ru/title1/faculties/gum/ef/?staff=1&cid=23"
+    },
+    "MTF": {
+      "Кафедра Автомобили и технологические машины (АТМ)": "https://pstu.ru/title1/faculties/adf/atm/?staff=1&cid=23",
+      "Кафедра Инновационные технологии машиностроения (ИТМ)": "https://pstu.ru/title1/faculties/mtf/itm/?staff=1&cid=23",
+      "Кафедра Металловедение, термическая и лазерная обработка металлов (МТО)": "https://pstu.ru/title1/faculties/mtf/mto/?staff=1&cid=23",
+      "Кафедра Сварочное производство, метрология и технология материалов (СПМТМ)": "https://pstu.ru/title1/faculties/mtf/sptkm/?staff=1&cid=23"
+    },
+    "STF": {
+      "Кафедра Автомобильные дороги и мосты (АДМ)": "https://pstu.ru/title1/faculties/adf/adm/?staff=1&cid=23",
+      "Кафедра Архитектура и урбанистика (АУР)": "https://pstu.ru/title1/faculties/stf/au/?staff=1&cid=23",
+      "Кафедра Строительное производство и геотехника (СПГ)": "https://pstu.ru/title1/faculties/stf/spg/?staff=1&cid=23",
+      "Кафедра Строительные конструкции и вычислительная механика (СКВМ)": "https://pstu.ru/title1/faculties/stf/skvm/?staff=1&cid=23",
+      "Кафедра Строительный инжиниринг и материаловедение (СИМ)": "https://pstu.ru/title1/faculties/stf/sim/?staff=1&cid=23",
+      "Кафедра Теплогазоснабжение, вентиляция и водоснабжение, водоотведение (ТВВВ)": "https://pstu.ru/title1/faculties/stf/tvvv/?staff=1&cid=23"
+    },
+    "FPMM": {
+      "Кафедра Высшая математика (ВМ)": "https://pstu.ru/title1/faculties/fpmm/vm/?staff=1&cid=23",
+      "Кафедра Вычислительная математика, механика и биомеханика (ВММБ)": "https://pstu.ru/title1/faculties/fpmm/vmmb/?staff=1&cid=23",
+      "Кафедра Динамика и прочность машин (ДПМ)": "https://pstu.ru/title1/faculties/fpmm/dpm/?staff=1&cid=23",
+      "Кафедра Математическое моделирование систем и процессов (ММСП)": "https://pstu.ru/title1/faculties/fpmm/mmsp/?staff=1&cid=23",
+      "Кафедра Общая физика (ОФ)": "https://pstu.ru/title1/faculties/fpmm/of/?staff=1&cid=23",
+      "Кафедра Прикладная математика (ПМ)": "https://pstu.ru/title1/faculties/fpmm/pm/?staff=1&cid=23",
+      "Кафедра Прикладная физика (ПФ)": "https://pstu.ru/title1/faculties/fpmm/pf/?staff=1&cid=23"
+    },
+    "HTF": {
+      "Кафедра Оборудование и автоматизация химических производств (ОАХП)": "https://pstu.ru/title1/faculties/htf/oahp/?staff=1&cid=23",
+      "Кафедра Охрана окружающей среды (ООС)": "https://pstu.ru/title1/faculties/adf/oos/?staff=1&cid=23",
+      "Кафедра Химические технологии (ХТ)": "https://pstu.ru/title1/faculties/htf/ht/?staff=1&cid=23",
+      "Кафедра Химия и биотехнология (ХБТ)": "https://pstu.ru/title1/faculties/htf/htb/?staff=1&cid=23"
+    },
+    "ETF": {
+      "Кафедра Автоматика и телемеханика (АТ)": "https://pstu.ru/title1/faculties/etf/at/?staff=1&cid=23",
+      "Кафедра Информационные технологии и автоматизированные системы (ИТАС)": "https://pstu.ru/title1/faculties/etf/itas/?staff=1&cid=23",
+      "Кафедра Конструирование и технологии в электротехнике (КТЭ)": "https://pstu.ru/title1/faculties/etf/kte/?staff=1&cid=23",
+      "Кафедра Микропроцессорные средства автоматизации (МСА)": "https://pstu.ru/title1/faculties/etf/msa/?staff=1&cid=23",
+      "Кафедра Электротехника и электромеханика (ЭТЭМ)": "https://pstu.ru/title1/faculties/etf/etem/?staff=1&cid=23"
+    }
+  }
+}

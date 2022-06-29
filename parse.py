@@ -2,7 +2,7 @@ import openpyxl
 from bs4 import BeautifulSoup
 import json
 import requests
-import transliterate
+import time
 
 
 def parse_xlsx(p, d):
@@ -50,23 +50,21 @@ def parse_xlsx(p, d):
     return result
 
 
-def parse_site():
+def parse_teachers():
     url = 'https://pstu.ru/title1/faculties/'
     headers = {
         'Accept': '*/*',
-        'User-Agent': 'Mozilla / 5.0(Windows NT 10.0;Win64;x64) AppleWebKit / 537.36(KHTML, likeGecko) Chrome / 102.0.0.0Safari / 537.36'
+        'User-Agent': 'Mozilla / 5.0(Windows NT 10.0;Win64;x64) AppleWebKit /'
+                      ' 537.36(KHTML, likeGecko) Chrome / 102.0.0.0Safari / 537.36'
     }
     req = requests.get(url, headers=headers)
     src = req.text
-    with open('index.html', 'w', encoding='UTF-8') as file:
-        file.write(src)
     soup = BeautifulSoup(src, 'lxml')
-    faculties = soup.find('li', text='Кафедра Электротехника и электромеханика (ЭТЭМ)')\
-        .find_parent()\
-        .find_parent()\
+    faculties = soup.find('li', text='Кафедра Электротехника и электромеханика (ЭТЭМ)') \
+        .find_parent() \
+        .find_parent() \
         .find_parent()
-    faculties_and_departments = []
-    with open('teachers.json') as f:
+    with open('departments.json') as f:
         loaded_json = json.load(f)
     a = 'AKF'
     for i in faculties.find_all('a'):
@@ -77,24 +75,87 @@ def parse_site():
                 a = i.get('href').split('/')[-2].upper()
                 loaded_json['faculties'][i.get('href').split('/')[-2].upper()] = {}
             if '(' and ')' in i.text:
-                loaded_json['faculties'][a][i.text] = f'https://pstu.ru{i.get("href")}?staff=1&cid=23'
-    with open('teachers.json', 'w') as f:
-        json.dump(loaded_json, f, indent=2, ensure_ascii=False)
+                url = f'https://pstu.ru{i.get("href")}'
+                req = requests.get(url, headers=headers)
+                src = req.text
+                soup = BeautifulSoup(src, 'lxml')
+                link = soup.find("a", text="Сотрудники кафедры")
+                try:
+                    loaded_json['faculties'][a][i.text] = f'https://pstu.ru{link.get("href")}'
+                except AttributeError:
+                    print(i)
 
-# Нижний парсит страницу с преподами, верхний достает все страницы с преподами на сайте и записывает в json это надо объединить
+    with open('teachers.json') as f:
+        teachers_json = json.load(f)
+    for fac in loaded_json['faculties']:
+        for dep in loaded_json['faculties'][fac]:
+            url = loaded_json['faculties'][fac][dep]
+            req = requests.get(url, headers=headers)
+            src = req.text
+            soup = BeautifulSoup(src, 'lxml')
+            teach_tag = soup.find("div", class_="fac").find_all("a")
+            teach_list = [[teach.text, f"https://pstu.ru{teach.get('href')}"] for teach in teach_tag]
+            teachers_json['faculties'][fac][dep] = {}
+            for teach in teach_list:
+                teachers_json['faculties'][fac][dep][teach[0]] = teach[1]
+    with open('teachers.json', 'w') as f:
+        json.dump(teachers_json, f, indent=2, ensure_ascii=False)
+
+
 def test():
     with open('index.html', encoding='UTF-8') as file:
         src = file.read()
     soup = BeautifulSoup(src, 'lxml')
     teach_tag = soup.find("div", class_="fac").find_all("a")
     teach_list = [[teach.text, f"https://pstu.ru{teach.get('href')}"] for teach in teach_tag]
-    with open('teachers.json') as f:
+    with open('departments.json') as f:
         loaded_json = json.load(f)
     for i in teach_list:
         loaded_json['faculties']['FPMM'][i[0]] = i[1]
-    with open('teachers.json', 'w') as f:
-        json.dump(loaded_json, f, indent=4, ensure_ascii=False)
+    with open('departments.json', 'w') as f:
+        json.dump(loaded_json, f, indent=2, ensure_ascii=False)
+
+
+def parse_groups():
+    url = 'https://pstu.ru/student/new_timetable/'
+    headers = {
+        'Accept': '*/*',
+        'User-Agent': 'Mozilla / 5.0(Windows NT 10.0;Win64;x64) AppleWebKit /'
+                      ' 537.36(KHTML, likeGecko) Chrome / 102.0.0.0Safari / 537.36'
+    }
+    req = requests.get(url, headers=headers)
+    src = req.text
+    with open('groups.json') as f:
+        groups_json = json.load(f)
+    groups_json['faculties'] = {}
+    soup = BeautifulSoup(src, 'lxml')
+    for fac in soup.find_all('div', style='padding:3px 5px 3px 5px'):
+        groups_json['faculties'][fac.text] = {}
+        url = 'https://pstu.ru/student/new_timetable/' + fac.find('a').get('href')
+        req = requests.get(url, headers=headers)
+        src = req.text
+        soup = BeautifulSoup(src, 'lxml')
+        for group_list in soup.find_all('div', style='padding:3px 5px 3px 25px'):
+            groups_json['faculties'][fac.text][group_list.text] = {}
+            url = 'https://pstu.ru/student/new_timetable/' + group_list.find('a').get('href')
+            req = requests.get(url, headers=headers)
+            src = req.text
+            soup = BeautifulSoup(src, 'lxml')
+            for group in soup.find_all('div', style='padding:3px 5px 3px 45px'):
+                groups_json['faculties'][fac.text][group_list.text][group.text.replace(' ', '')] = {}
+                url = 'https://pstu.ru/student/new_timetable/' + group.find('a').get('href')
+                req = requests.get(url, headers=headers)
+                src = req.text
+                soup = BeautifulSoup(src, 'lxml')
+                for rasp in soup.find_all('div', style='padding:3px 5px 3px 65px'):
+                    groups_json['faculties'][fac.text][group_list.text][group.text.replace(' ', '')][rasp.text] =\
+                        rasp.find('a').get('href')
+
+    with open('groups.json', 'w') as f:
+        json.dump(groups_json, f, indent=2, ensure_ascii=False)
 
 
 if __name__ == '__main__':
-    parse_site()
+    start_time = time.time()
+    parse_groups()
+    print("%s секунд" % (time.time() - start_time))

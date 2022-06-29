@@ -3,10 +3,13 @@ from telebot import types
 import config
 import parse
 import datetime
+import json
 
 date = datetime.date.weekday(datetime.date.today())
 bot = telebot.TeleBot(config.token)
 chain_actions = []
+with open('departments.json') as f:
+    loaded_json = json.load(f)
 
 
 def schedule(mes, d=datetime.date.weekday(datetime.date.today())):
@@ -33,10 +36,8 @@ def welcome(message):
     bot.send_message(message.chat.id,
                      "Приветствую вас, пока что я уродец и работаю только для истов 20 года, но скоро это изменится!")
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
-    b1 = types.KeyboardButton('ИСТ-20-1б')
-    b2 = types.KeyboardButton('ИСТ-20-2б')
-    b3 = types.KeyboardButton('ИСТ-20-3б')
-    markup.add(b1, b2, b3)
+    for i in loaded_json['faculties']:
+        markup.add(i)
     bot.send_message(message.chat.id,
                      "Я знаю, что твоё направление ИСТ, так что просто выбери группу",
                      reply_markup=markup)
@@ -44,6 +45,8 @@ def welcome(message):
 
 @bot.message_handler(content_types=['text'])
 def start_text(message):
+    if message.text in list(loaded_json['faculties'].keys()):
+        pass
     if message.text in ['ИСТ-20-1б', 'ИСТ-20-2б', 'ИСТ-20-3б']:
         chain_actions.append(message.text)
         print(chain_actions)
