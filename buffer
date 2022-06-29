@@ -1,0 +1,5 @@
+    if message.text in list(groups_json['faculties'][chain_actions[-1]].keys()):
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+        for i in groups_json['faculties'][chain_actions[-1]][message.text].keys():
+            markup.add(i)
+        bot.send_message(message.chat.id, "Выберите группу", reply_markup=markup)

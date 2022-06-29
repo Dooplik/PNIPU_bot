@@ -8,26 +8,12 @@ import json
 date = datetime.date.weekday(datetime.date.today())
 bot = telebot.TeleBot(config.token)
 chain_actions = []
-with open('departments.json') as f:
-    loaded_json = json.load(f)
-
-
-def schedule(mes, d=datetime.date.weekday(datetime.date.today())):
-    if 'ИСТ-20-1б' in chain_actions:
-        print(1)
-        chain_actions.append(mes.text)
-        rasp = parse.parse_xlsx(config.path1, d)
-        bot.send_message(mes.chat.id, rasp)
-    elif 'ИСТ-20-2б' in chain_actions:
-        print(2)
-        chain_actions.append(mes.text)
-        rasp = parse.parse_xlsx(config.path2, d)
-        bot.send_message(mes.chat.id, rasp)
-    elif 'ИСТ-20-3б' in chain_actions:
-        print(3)
-        chain_actions.append(mes.text)
-        rasp = parse.parse_xlsx(config.path3, d)
-        bot.send_message(mes.chat.id, rasp)
+with open('departments.json') as f1:
+    departments_json = json.load(f1)
+with open('groups.json') as f2:
+    groups_json = json.load(f2)
+with open('teachers.json') as f3:
+    teachers_json = json.load(f3)
 
 
 @bot.message_handler(commands=["start"])
@@ -35,44 +21,55 @@ def welcome(message):
     chain_actions.clear()
     bot.send_message(message.chat.id,
                      "Приветствую вас, пока что я уродец и работаю только для истов 20 года, но скоро это изменится!")
-    markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
-    for i in loaded_json['faculties']:
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2, one_time_keyboard=True)
+    for i in departments_json['faculties']:
         markup.add(i)
-    bot.send_message(message.chat.id,
-                     "Я знаю, что твоё направление ИСТ, так что просто выбери группу",
-                     reply_markup=markup)
+    markup.add("На главную")
+    bot.send_message(message.chat.id, "Выбери факультет", reply_markup=markup)
 
 
 @bot.message_handler(content_types=['text'])
 def start_text(message):
-    if message.text in list(loaded_json['faculties'].keys()):
-        pass
-    if message.text in ['ИСТ-20-1б', 'ИСТ-20-2б', 'ИСТ-20-3б']:
+    if message.text in list(departments_json['faculties'].keys()):
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+        for direction in groups_json['faculties'][replace(message.text)].keys():
+            markup.add(direction)
+        chain_actions.append(replace(message.text))
+        bot.send_message(message.chat.id, "Выберите направление", reply_markup=markup)
+        bot.register_next_step_handler(message, a)
+
+
+def a(message):
+    if message.text in list(groups_json['faculties'][chain_actions[-1]].keys()):
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+        for i in groups_json['faculties'][chain_actions[-1]][message.text].keys():
+            markup.add(i)
         chain_actions.append(message.text)
-        print(chain_actions)
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
-        b1 = types.KeyboardButton('Предметы')
-        b2 = types.KeyboardButton('Преподаватели')
-        b3 = types.KeyboardButton('Расписание')
-        b4 = types.KeyboardButton('На главную')
-        markup.add(b1, b2, b3, b4)
-        bot.send_message(message.chat.id, "Что вас интересует?", reply_markup=markup)
-    elif message.text in ['Расписание', 'расписание']:
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
-        b1 = types.KeyboardButton('На сегодня')
-        b2 = types.KeyboardButton('На завтра')
-        b4 = types.KeyboardButton('На главную')
-        markup.add(b1, b2, b4)
-        bot.send_message(message.chat.id, "На какой день смотреть будем, дядя?", reply_markup=markup)
-        print(message.text)
-    elif message.text == 'На сегодня':
-        print(message.text)
-        schedule(message)
-    elif message.text == 'На завтра':
-        print(message.text)
-        schedule(message, date + 1)
-    elif message.text == "На главную":
-        welcome(message)
+        bot.send_message(message.chat.id, "Выберите группу", reply_markup=markup)
+        bot.register_next_step_handler(message, b)
+
+
+def b(message):
+    if message.text in list(groups_json['faculties'][chain_actions[-2]][chain_actions[-1]].keys()):
+        reply_markup = types.InlineKeyboardMarkup(row_width=2)
+        for i in groups_json['faculties'][chain_actions[-2]][chain_actions[-1]][message.text].keys():
+            url = groups_json['faculties'][chain_actions[-2]][chain_actions[-1]][message.text][i]
+            reply_markup.add(types.InlineKeyboardButton(text=i, url=url))
+        chain_actions.append(message.text)
+        bot.send_message(message.chat.id, "Качай", reply_markup=reply_markup)
+
+
+def replace(word):
+    abb = {'AKF': 'АКФ',
+           'GNF': 'ГНФ',
+           'GUM': 'ГумФ',
+           'MTF': 'МТФ',
+           'STF': 'СФ',
+           'FPMM': 'ФПММ',
+           'HTF': 'ХТФ',
+           'ETF': 'ЭТФ',
+           }
+    return abb[word]
 
 
 bot.polling(none_stop=True)
