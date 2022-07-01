@@ -155,7 +155,35 @@ def parse_groups():
         json.dump(groups_json, f, indent=2, ensure_ascii=False)
 
 
+def parse_glossary():
+    url = 'https://pstu.ru/basic/glossary/'
+    headers = {
+        'Accept': '*/*',
+        'User-Agent': 'Mozilla / 5.0(Windows NT 10.0;Win64;x64) AppleWebKit /'
+                      ' 537.36(KHTML, likeGecko) Chrome / 102.0.0.0Safari / 537.36'
+    }
+    req = requests.get(url, headers=headers)
+    src = req.text
+    with open('glossary.json') as f:
+        glossary_json = json.load(f)
+    soup = BeautifulSoup(src, 'lxml')
+    sections = soup.find('div', class_='content').find_all('p')[1:7]
+    subsections = soup.find('div', class_='content').find_all('ul')
+    for i in range(len(sections)):
+        glossary_json[sections[i].text.replace(' ', '')] = {}
+        for j in subsections[i].find_all('a'):
+            link = 'http://pstu.ru'
+            if link in j.get('href'):
+                link = j.get('href')
+            else:
+                link += j.get('href')
+            glossary_json[sections[i].text.replace(' ', '')][j.text] = link
+
+    with open('glossary.json', 'w') as f:
+        json.dump(glossary_json, f, indent=2, ensure_ascii=False)
+
+
 if __name__ == '__main__':
     start_time = time.time()
-    parse_groups()
+    parse_glossary()
     print("%s секунд" % (time.time() - start_time))

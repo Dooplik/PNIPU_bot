@@ -1,0 +1,77 @@
+{
+  "Управления": {
+    "Учебно-методическое управление": "http://pstu.ru/basic/glossary/full/#2",
+    "Подготовительные курсы": "http://pstu.ru/basic/glossary/full/#214",
+    "Департамент науки и инноваций": "http://pstu.ru/basic/glossary/full/#23",
+    "Управление социальной и внеучебной работы": "http://pstu.ru/basic/glossary/full/#26",
+    "Управление бухгалтерского учета и финансового контроля": "http://pstu.ru/basic/glossary/full/#27",
+    "Управление кадров": "http://pstu.ru/basic/glossary/full/#9",
+    "Административно-правовое управление": "http://pstu.ru/basic/glossary/full/#29",
+    "Управление безопасности ": "http://pstu.ru/basic/glossary/full/#210",
+    "Управление общежитиями": "http://pstu.ru/basic/glossary/full/#211",
+    "Управление капитального строительства и развития имущественного комплекса": "http://pstu.ru/basic/glossary/full/#212",
+    "Управление по эксплуатации зданий и сооружений": "http://pstu.ru/basic/glossary/full/#213"
+  },
+  "Подразделения, обеспечивающие деятельность университета": {
+    "Научная библиотека": "http://pstu.ru/basic/glossary/full/#31",
+    "Издательство ПНИПУ": "http://pstu.ru/basic/glossary/full/#32",
+    "Департамент цифровой трансформации и стратегических коммуникаций": "http://pstu.ru/basic/glossary/full/#33",
+    "Штаб ГО, ЧС и ПБ": "http://pstu.ru/basic/glossary/full/#34",
+    "Отдел охраны труда": "http://pstu.ru/basic/glossary/full/#35",
+    "Организация общественного питания": "http://pstu.ru/basic/glossary/full/#36",
+    "Лечебно-оздоровительные подразделения": "http://pstu.ru/basic/glossary/full/#37",
+    "Общественные организации": "http://pstu.ru/basic/glossary/full/#4"
+  },
+  "Факультеты": {
+    "Аэрокосмический факультет": "http://pstu.ru/basic/glossary/full/#52",
+    "Горно-нефтяной факультет": "http://pstu.ru/basic/glossary/full/#53",
+    "Гуманитарный факультет": "http://pstu.ru/basic/glossary/full/#54",
+    "Механико-технологический факультет": "http://pstu.ru/basic/glossary/full/#55",
+    "Строительный факультет": "http://pstu.ru/basic/glossary/full/#56",
+    "Факультет прикладной математики и механики": "http://pstu.ru/basic/glossary/full/#57",
+    "Факультет химических технологий, промышленной экологии и биотехнологий": "http://pstu.ru/basic/glossary/full/#58",
+    "Электротехнический факультет": "http://pstu.ru/basic/glossary/full/#59",
+    "Факультет подготовки кадров высшей квалификации": "http://pstu.ru/basic/glossary/full/#24",
+    "Факультет иностранных студентов": "http://pstu.ru/basic/glossary/full/#25",
+    "Факультет повышения квалификации преподавателей": "http://pstu.ru/basic/glossary/full/#511"
+  },
+  "Центры университета": {
+    "Центр дистанционных образовательных технологий": "http://pstu.ru/basic/glossary/full/#512",
+    "Международный центр бизнес образования и деловой коммуникации (Центр «МБО ПНИПУ») ": "http://pstu.ru/basic/glossary/full/#61",
+    "Научно образовательный центр геологии и разработки нефтяных и газовых месторождений ": "http://pstu.ru/basic/glossary/full/#62",
+    "Научно образовательный центр прикладных химических и биологических исследований (НОЦ ХимБИ) ": "http://pstu.ru/basic/glossary/full/#63",
+    "Научный центр порошкового материаловедения ПНИПУ ": "http://pstu.ru/basic/glossary/full/#64",
+    "Инжиниринговый центр новых технологий": "http://pstu.ru/basic/glossary/full/#65",
+    "Проектный центр «ПНИПУ-Нефтепроект»": "http://pstu.ru/basic/glossary/full/#66",
+    "Региональный центр технической компетенции «AMD-ПНИПУ» ": "http://pstu.ru/basic/glossary/full/#67",
+    "Учебно -консультационный и исследовательский центр «ТЭРРА Коммуникацио» (Центр «ТЕРКОМ») ": "http://pstu.ru/basic/glossary/full/#68",
+    "Центр адаптивно -модульного обучения ": "http://pstu.ru/basic/glossary/full/#69",
+    "Центр аддитивных технологий ": "http://pstu.ru/basic/glossary/full/#610",
+    "Научно-образовательный центр акустических исследований, разработки и производства композитных и звукопоглощающих авиационных конструкций ": "http://pstu.ru/basic/glossary/full/#611",
+    "Научно-образовательный центр авиационных композитных технологий ": "http://pstu.ru/basic/glossary/full/#612",
+    "Испытательная лаборатория длительной прочности авиационных материалов ": "http://pstu.ru/basic/glossary/full/#613",
+    "Лаборатория неразрушающего контроля и технической диагностики ": "http://pstu.ru/basic/glossary/full/#614",
+    "Центр акустических исследований (Акустическая лаборатория) ": "http://pstu.ru/basic/glossary/full/#615",
+    "Лаборатория механизмов генерации шума и модального анализа ": "http://pstu.ru/basic/glossary/full/#616",
+    "Центр высокопроизводительных вычислительных систем ": "http://pstu.ru/basic/glossary/full/#617",
+    "Центр компетенций высокотехнологичных машиностроительных производств ": "http://pstu.ru/basic/glossary/full/#618",
+    "Центр трансфера технологий ": "http://pstu.ru/basic/glossary/full/#619",
+    "Центр управления качеством образования ПНИПУ ": "http://pstu.ru/basic/glossary/full/#620",
+    "Центр экспериментальной механики ": "http://pstu.ru/basic/glossary/full/#621",
+    "Экологический консалтинговый центр ": "http://pstu.ru/basic/glossary/full/#622",
+    "Центр технических инноваций и модернизации в строительстве «МИКС» ПНИПУ": "http://pstu.ru/basic/glossary/full/#623"
+  },
+  "Институты": {
+    "Институт нефти и газа": "http://pstu.ru/basic/glossary/full/#71",
+    "Институт безопасности труда, производства и человека": "http://pstu.ru/basic/glossary/full/#72",
+    "Институт авиационного двигателестроения и газотурбинных технологий": "http://pstu.ru/basic/glossary/full/#73",
+    "Институт непрерывного образования": "http://pstu.ru/basic/glossary/full/#75",
+    "Институт калия": "http://pstu.ru/basic/glossary/full/#76",
+    "Институт фотоники и оптоэлектронного приборостроения": "http://pstu.ru/basic/glossary/full/#77"
+  },
+  "Филиалы": {
+    "Березниковский филиал": "http://pstu.ru/basic/glossary/full/#81",
+    "Лысьвенский филиал": "http://pstu.ru/basic/glossary/full/#82",
+    "Чайковский филиал": "http://pstu.ru/basic/glossary/full/#83"
+  }
+}
